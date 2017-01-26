@@ -9,7 +9,7 @@
 
 }
 h1{
-	font-size:40px;
+	font-size:48px;
 }
 form{
   text-align:left;
@@ -51,5 +51,8 @@ body{
 	p{
 	font-size:16px;
 	line-height:24px;
+	}
+	h1{
+		font-size:36px;
 	}
 }
