@@ -1,1 +1,195 @@
-<h1>hello world</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>新春賀語生成器</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/general.css" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <div class="container">
+      <div class="row">
+        <div class=" col-xs-offset-4 col-xs-4 ">
+          <img class="img-responsive" src='images/fok.jpg'/>
+        </div>
+      </div> 
+      <div class="row">
+        <div class="col-xs-12">
+          <h1 class="title">新春賀語生成器</h1>
+        </div>
+      </div>  
+       <div class="row">
+        <div class="col-xs-12 col-sm-offset-2 col-sm-8">
+        <div class="introduction">
+          <p >
+            嚟到農曆新年，又係四出拜年𢭃利是嘅時候嗱。𢭃利是最強嘅武器當然係一把口齒伶俐嘅嘴，而祝福賀語就係你嘅彈藥，講多幾句啱聽嘅賀語，氹得你嘅目標財主開開心心，自然提升對方派大封啲利是畀你嘅機會。但可惜你天生內斂，出親聲就開口夾著脷，講嚟講去都係得嗰兩句賀語？放心，我地依個「新春賀語生成器」就幫到你嗱。
+          </p>
+          <p>只要輸入你目標嘅幾項簡單資料，我地嘅「新春賀語生成器」就會幫你度身訂做一句新春賀語畀對方，保證你一矢中的，直中對方要害，啊，係對方唧心意先啱。快啲嚟試吓啦，利是齊齊𢭃，祝你𢭃到盤滿缽滿！
+        </div>
+          <form id="myform">
+            <div class="form-group">
+              <label class="control-label"><h3>目標的性別？</h3></label>
+              <br/>
+                <div class="btn-group" data-toggle="buttons" id="gender">
+                  <label class="btn btn-default active">
+                    <input type="radio" name="gender-opt" id="gender-opt-1" autocomplete="off" checked value="1"> 男
+                  </label>
+                  <label class="btn btn-default">
+                    <input type="radio" name="gender-opt" id="gender-opt-2" autocomplete="off" value="0"> 女
+                  </label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="control-label"><h3>目標的年齡？</h3></label>
+              <br/>
+                <div class="btn-group" data-toggle="buttons" id="age">
+                                <label class="btn btn-default active">
+                    <input type="radio" name="age-opt" id="age-opt-1" autocomplete="off" checked value="0"> 少於20歲
+                  </label>
+                  <label class="btn btn-default">
+                    <input type="radio" name="age-opt" id="age-opt-2" autocomplete="off" value="20"> 介乎20-65歲
+                  </label>
+                  <label class="btn btn-default">
+                    <input type="radio" name="age-opt" id="age-opt-3" autocomplete="off" value="65"> 大過65歲
+                  </label>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+              <label class="control-label"><h3>預計目標會派幾大封利是？</h3></label>
+              <br/>
+                <div class="btn-group" data-toggle="buttons" id="price">
+                                <label class="btn btn-default active">
+                    <input type="radio" name="price-opt" id="price-opt-1" autocomplete="off" checked value="0"> 唔派利是
+                  </label>
+                  <label class="btn btn-default">
+                    <input type="radio" name="price-opt" id="price-opt-2" autocomplete="off" value="20"> 20雞
+                  </label>
+                  <label class="btn btn-default">
+                    <input type="radio" name="price-opt" id="price-opt-3" autocomplete="off" value="100"> 100蚊
+                  </label>
+                </div>
+            </div>
+            <button type="button" id="check-result" class="btn-lg btn-warning">祝福佢...</button>
+          </form>
+        </div>
+       </div>
+
+       <div class="row">
+         <div class="col-xs-12 col-sm-offset-2 col-sm-8">
+           <div class="result">
+             <div class="result-detail"></div>
+           </div>
+         </div>
+       </div>
+       <div class="row">
+         <div class="col-xs-12 col-sm-offset-2 col-sm-8">
+           <div class="footer">
+             <p>Simple Studio 製作 ｜ <a href="https://www.facebook.com/simstudio2016/" target="blank">https://www.facebook.com/simstudio2016/</a>
+           </div>
+         </div>
+       </div>
+    </div>
+      <script type="text/javascript">
+        var $price;
+        var $age;
+        var $gender;
+        
+
+            $('#check-result').on('click',function(){
+              $price = $('#price .active input').val();
+               $age = $('#age .active input').val();
+                $gender = $('#gender .active input').val();
+              if($gender==1 && $age==0 && $price==0 ){
+              $(".result-detail").remove();
+              $(".result").append("<div class='result-detail'><img class='img-responsive img-result' src='images/fc-12.jpg'/> <br/><h3>依句點解好？</h3><p>正所謂「你的樣子如何，你的日子也必如何」，就算唔靚仔，生得高啲都好啊。男仔20歲前都仲有得高𠺢，祝福佢快高長大啦！</p></div>");
+              }
+              else if($gender==1 && $age==0 && $price==20 ){
+              $(".result-detail").remove();
+              $(".result").append("<div class='result-detail'><img class='img-responsive img-result' src='images/fc-02.jpg'/> <br/><h3>依句點解好？</h3><p>未20歲就結咗婚、派利是，我相信佢都幾想扭轉乾坤。</p></div>");
+              }
+              else if($gender==1 && $age==0 && $price==100 ){
+              $(".result-detail").remove();
+              $(".result").append("<div class='result-detail'><img class='img-responsive img-result' src='images/fc-03.jpg'/> <br/><h3>依句點解好？</h3><p>未20歲就結到婚、仲派成100蚊利是，你依位朋友家底應該唔會差得去邊。所以要祝福佢闔家平安，成家都越黎越好，下年就再派多啲利是。</p></div>");
+              }
+              else if($gender==1 && $age==20 && $price==0 ){
+              $(".result-detail").remove();
+              $(".result").append("<div class='result-detail'><img class='img-responsive img-result' src='images/fc-04.jpg'/> <br/><h3>依句點解好？</h3><p>到咗適婚年齡都仲未結婚派利是，作為朋友嘅梗係祝福佢早日揾到好歸宿，開展幸福美滿嘅下半生。然後下年唔止就少個𢭃利是嘅競爭對手，仲多咗封利是可以𢭃。</p></div>");
+              }
+              else if($gender==1 && $age==20 && $price==20 ){
+              $(".result-detail").remove();
+              $(".result").append("<div class='result-detail'><img class='img-responsive img-result' src='images/fc-10.jpg'/> <br/><h3>依句點解好？</h3><p>佢咁行派廿蚊，咁你都交返啲最行嘅貨畀佢算，無謂花心機。咁當然都希望佢真係發財，下年派多啲。</p></div>");
+              }
+              else if($gender==1 && $age==20 && $price==100 ){
+              $(".result-detail").remove();
+              $(".result").append("<div class='result-detail'><img class='img-responsive img-result' src='images/fc-06.jpg'/> <br/><h3>依句點解好？</h3><p>依個年紀係男人嘅奮鬥期，最想人相信佢嘅信念，支持佢勇往直前。佢畀成100蚊，梗係要落力為佢打氣。</p></div>");
+              }
+              else if($gender==1 && $age==65 && $price==0 ){
+              $(".result-detail").remove();
+              $(".result").append("<div class='result-detail'><img class='img-responsive img-result' src='images/fc-07.jpg'/> <br/><h3>依句點解好？</h3><p>再鋒利嘅刀都有生銹嘅一日，嚟到依啲年紀，最重視嘅就係健康。</p></div>");
+              }
+              else if($gender==1 && $age==65 && $price==20 ){
+              $(".result-detail").remove();
+              $(".result").append("<div class='result-detail'><img class='img-responsive img-result' src='images/fc-08.jpg'/> <br/><h3>依句點解好？</h3><p>無派利是都祝人地身體健康，有派嘅梗係要畀高一個層次嘅祝福啦，唔止身體健康，健康得嚟仲要精精神神。</p></div>");
+              }
+              else if($gender==1 && $age==65 && $price==100 ){
+              $(".result-detail").remove();
+              $(".result").append("<div class='result-detail'><img class='img-responsive img-result' src='images/fc-09.jpg'/> <br/><h3>依句點解好？</h3><p>嘩，畀成100蚊利是，個祝福嘅層次真係要再推高一級。唔單止要保住啲青春同健康，直頭要回春，攞返D青春返嚟。</p></div>");
+              }
+              else if($gender==0 && $age==0 && $price==0 ){
+              $(".result-detail").remove();
+              $(".result").append("<div class='result-detail'><img class='img-responsive img-result' src='images/fc-01.jpg'/> <br/><h3>依句點解好？</h3><p>唔好以為啲妹妹無利是派就放棄機會，佢唔會派，但佢阿爸阿媽會嘛。所以對個𡃁妹嘅祝福實際係講畀佢身後嘅阿爸阿媽聽，而父母最望就係仔女讀到書，所以依句就最啱。</p></div>");
+              }
+              else if($gender==0 && $age==0 && $price==20 ){
+              $(".result-detail").remove();
+              $(".result").append("<div class='result-detail'><img class='img-responsive img-result' src='images/fc-11.jpg'/> <br/><h3>依句點解好？</h3><p>依個年代好難會生到五個，所以依句祝福都好少機會用得到。但對方咁年輕就結咗婚派利是，生孩子嘅時間相對充裕，有較大嘅機會能成就依個祝福，所以用係佢身上。</p></div>");
+              }
+              else if($gender==0 && $age==0 && $price==100 ){
+              $(".result-detail").remove();
+              $(".result").append("<div class='result-detail'><img class='img-responsive img-result' src='images/fc-13.jpg'/> <br/><h3>依句點解好？</h3><p>咁後生就結咗婚，仲派成100蚊利是，相信佢都嫁得唔錯。所以祝福佢同佢老公一直好落去，咁依封利是就長𢭃長有。</p></div>");
+              }
+              else if($gender==0 && $age==20 && $price==0 ){
+              $(".result-detail").remove();
+              $(".result").append("<div class='result-detail'><img class='img-responsive img-result' src='images/fc-14.jpg'/> <br/><h3>依句點解好？</h3><p>依家啲女仔20幾歲就開始話自己係中女，擔心青春逝去，所以你祝佢青春常駐就最啱佢心意。</p></div>");
+              }
+              else if($gender==0 && $age==20 && $price==20 ){
+              $(".result-detail").remove();
+              $(".result").append("<div class='result-detail'><img class='img-responsive img-result' src='images/fc-05.jpg'/> <br/><h3>依句點解好？</h3><p>都係嗰句，佢咁行派20蚊，你都係交返行貨畀佢就好，無謂花心機。爭取時間𢭃多幾個，密食當三番好過。</p></div>");
+              }
+              else if($gender==0 && $age==20 && $price==100 ){
+              $(".result-detail").remove();
+              $(".result").append("<div class='result-detail'><img class='img-responsive img-result' src='images/fc-15.jpg'/> <br/><h3>依句點解好？</h3><p>派100蚊咁重手，梗係希望佢越派越發，下年再派多啲。</p></div>");
+              }
+              else if($gender==0 && $age==65 && $price==0 ){
+              $(".result-detail").remove();
+              $(".result").append("<div class='result-detail'><img class='img-responsive img-result' src='images/fc-16.jpg'/> <br/><h3>依句點解好？</h3><p>祝福之餘仲可以提佢拎生果金。</p></div>");
+              }
+              else if($gender==0 && $age==65 && $price==20 ){
+              $(".result-detail").remove();
+              $(".result").append("<div class='result-detail'><img class='img-responsive img-result' src='images/fc-17.jpg'/> <br/><h3>依句點解好？</h3><p>對住老人家就適合講啲傳統啲嘅祝福語。</p></div>");
+              }
+              else if($gender==0 && $age==65 && $price==100 ){
+              $(".result-detail").remove();
+              $(".result").append("<div class='result-detail'><img class='img-responsive img-result' src='images/fc-18.jpg'/> <br/><h3>依句點解好？</h3><p>收人成100蚊，梗係要講啲有深度啲嘅賀語。</p></div>");
+              }
+
+
+
+              $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+            })
+          </script>
+  </body>
+</html>
